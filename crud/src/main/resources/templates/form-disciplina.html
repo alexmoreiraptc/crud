@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="fragments/modelo :: modelo">
+<head>
+<meta charset="utf-8">
+<title>FORM DISCIPLINA</title>
+</head>
+<body>
+
+	<div th:fragment="conteudo">
+	<div class="container mt-3">
+				
+		<form action="/cad-disciplina" method="post" th:object="${disciplina}">
+		<div class="form-group">
+			<label>Código:</label> <input type="text" th:field="*{id}" class="form-control"><br>
+		</div>
+		<div class="form-group">
+			<label>Disciplina:</label> <input type="text" th:field="*{nome}" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Professor:</label> <input type="text" th:field="*{professor}" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>Período:</label> 
+				<div class="form-check form-check-inline" th:each="p : ${#numbers.sequence(1,5)}" >
+					<input type="radio" th:value="${p}" th:field="*{periodo}" class="form-check-input">
+					<label class="form-check-label" th:for="${#ids.prev('periodo')}" th:text="${p}">1</label>
+				</div>
+		</div>
+		<div class="form-group">
+			<label>Classroom:</label> <input type="text" th:field="*{codigo_sala_classroom}" class="form-control">
+		</div>
+		<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+		
+	</div>
+	</div>
+
+</body>
+</html>

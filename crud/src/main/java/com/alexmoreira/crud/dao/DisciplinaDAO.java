@@ -12,6 +12,22 @@ import java.sql.Connection;
 
 public class DisciplinaDAO {
 	
+	public void inserir(Disciplina disciplina) throws SQLException {
+		  Connection conexao = FabricaDeConexao.getConnection();
+		  String sql = "insert into disciplina" +
+				"(id, nome, professor, periodo, codigo_sala_classroom)" +
+				" values (?,?,?,?,?)";
+		  PreparedStatement stmt = conexao.prepareStatement(sql);
+		  stmt.setInt(1,disciplina.getId());
+		  stmt.setString(2, disciplina.getNome());
+		  stmt.setString(3, disciplina.getProfessor());
+		  stmt.setInt(4, disciplina.getPeriodo());
+		  stmt.setString(5, disciplina.getCodigo_sala_classroom());
+		  stmt.execute();
+		  stmt.close();
+		  conexao.close();
+		}
+	
 	
 	public static void listagem() throws SQLException {
 		  Connection conexao = FabricaDeConexao.getConnection();
